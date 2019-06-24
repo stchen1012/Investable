@@ -44,6 +44,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var indexLastPriceWLArray:[Double] = []
     var indexPriceChangeWLArray:[String] = []
     var isEditingCollectionView = false
+    let reachabilityManager = NetworkReachabilityManager()
     
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -53,7 +54,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }()
     
 
-    
    override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,6 +66,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         watchListCollectionView.dataSource = self
         
         watchListCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: collectionViewFooterReuseIdentifier)
+    
+    
+        reachabilityManager?.startListening()
+        reachabilityManager?.listener = { _ in
+        if let isNetworkReachable = self.reachabilityManager?.isReachable,
+            isNetworkReachable == true {
+            print("Connected")
+        } else {
+            let welcomeAlert = UIAlertController(title: "Note", message: "This app requires internet service", preferredStyle: UIAlertController.Style.alert)
+            welcomeAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(welcomeAlert, animated: true, completion: nil)
+        }
+        }
     
         let token = "pk_11a5de39ee5c479b9e66905fe0c92117"
     

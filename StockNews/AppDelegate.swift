@@ -35,9 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        let welcomeAlert = UIAlertController(title: "Note", message: "This app requires internet service", preferredStyle: UIAlertController.Style.alert)
-        welcomeAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.window?.rootViewController?.present(welcomeAlert, animated: true, completion: nil)
+//        let welcomeAlert = UIAlertController(title: "Note", message: "This app requires internet service", preferredStyle: UIAlertController.Style.alert)
+//        welcomeAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+//        self.window?.rootViewController?.present(welcomeAlert, animated: true, completion: nil)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

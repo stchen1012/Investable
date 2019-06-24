@@ -20,6 +20,7 @@ class AddStockToWishListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        addStockTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     // this func and shouldAutorotate below prevents autorotate of VC
@@ -29,6 +30,12 @@ class AddStockToWishListViewController: UIViewController {
     
     override open var shouldAutorotate: Bool {
         return false
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let text = textField.text ?? ""
+        let trimmedText = text.trimmingCharacters(in: .whitespaces)
+        textField.text = trimmedText
     }
     
     @IBAction func savePressed(_ sender: Any) {
