@@ -55,10 +55,10 @@ class ArticlesListViewController: UIViewController, UITableViewDelegate, UITable
                 
                 
                 for item in list {
-                    self.dateTimeList.append(item.dateTime!)
-                    self.headlineList.append(item.headline!)
-                    self.sourceList.append(item.source!)
-                    self.urlList.append(item.URL! + "?token=\(token)")
+                    self.dateTimeList.append(item.dateTime ?? 0.0)
+                    self.headlineList.append(item.headline ?? "")
+                    self.sourceList.append(item.source ?? "")
+                    self.urlList.append(item.URL ?? "" + "?token=\(token)")
                 }
 
                 for i in self.dateTimeList {
@@ -94,7 +94,6 @@ class ArticlesListViewController: UIViewController, UITableViewDelegate, UITable
             tableViewCell.headlineTableView?.text = "\(headlineList[indexPath.row])"
             tableViewCell.dateTableView?.text = "\(dateTimeFormattedList[indexPath.row])"
             tableViewCell.sourceTableView?.text = "\(sourceList[indexPath.row])"
-            tableViewCell.URLTableView?.text = "\(urlList[indexPath.row])"
         
         }
         return tableViewCell

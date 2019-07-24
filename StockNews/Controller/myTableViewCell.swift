@@ -14,6 +14,5 @@ class myTableViewCell: UITableViewCell {
     @IBOutlet weak var headlineTableView: UILabel!
     @IBOutlet weak var dateTableView: UILabel!
     @IBOutlet weak var sourceTableView: UILabel!
-    @IBOutlet weak var URLTableView: UILabel!
 
 }

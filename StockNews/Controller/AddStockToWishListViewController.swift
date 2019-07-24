@@ -39,7 +39,7 @@ class AddStockToWishListViewController: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        addStockToWishListDelegate?.updateTickerList(sender: addStockTextfield.text!)
+        addStockToWishListDelegate?.updateTickerList(sender: addStockTextfield.text ?? "")
         dismiss(animated: true, completion: nil)
     }
     

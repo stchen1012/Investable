@@ -101,8 +101,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     
                     let indexObjectInfo = Mapper<StockInfo>().map(JSONObject: responseJSON)
                     let indexStocks = Stock.init()
-                    indexStocks.stockTicker = indexObjectInfo?.symbol! ?? ""
-                    indexStocks.stockLastPrice = indexObjectInfo?.latestPrice! ?? 0
+                    indexStocks.stockTicker = indexObjectInfo?.symbol ?? ""
+                    indexStocks.stockLastPrice = indexObjectInfo?.latestPrice ?? 0
                     let percentChangeCalc = ((indexObjectInfo?.changePercent ?? 0) * 100)
                     let roundedPercentChangeCalc = String(format: "%.2f", percentChangeCalc)
                     indexStocks.stockPercentChange = String(format: "%.2f", percentChangeCalc)
@@ -184,15 +184,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         let indexOfStock = self.stockArray.firstIndex(where: { (stock) -> Bool in
                             return stock.stockTicker == ticker
                         })
-                        self.stockArray[indexOfStock!].stockLastPrice = indexWLObjectInfo?.latestPrice! ?? 0
-                        self.stockArray[indexOfStock!].stockPercentChange = String(format: "%.2f", (indexWLObjectInfo?.changePercent ?? 0) * 100)
+                        self.stockArray[indexOfStock ?? 0].stockLastPrice = indexWLObjectInfo?.latestPrice ?? 0
+                        self.stockArray[indexOfStock ?? 0].stockPercentChange = String(format: "%.2f", (indexWLObjectInfo?.changePercent ?? 0) * 100)
                     }
                     else{
                         //3b - Create a new stock object and populate. Then add it to stockArray
                         let stock = Stock.init()
                         let indexWLObjectInfo = Mapper<StockInfo>().map(JSONObject: responseJSON)
                         stock.stockTicker = ticker
-                        stock.stockLastPrice = indexWLObjectInfo?.latestPrice! ?? 0
+                        stock.stockLastPrice = indexWLObjectInfo?.latestPrice ?? 0
                         let percentChangeCalc = ((indexWLObjectInfo?.changePercent ?? 0) * 100)
                         stock.stockPercentChange = String(format: "%.2f", percentChangeCalc)
                         self.stockArray.append(stock)
@@ -252,6 +252,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 if (percentChangeIntMarket ?? 0.0  > 0.0){
                     cellA.percentChangeLabel.text = "\(stockArrayforIndex[indexPath.item].stockPercentChange)%"
                     cellA.percentChangeLabel.textColor = UIColor.init(red:0.36, green:0.72, blue:0.36, alpha:1.0)
+                }
+                else if (percentChangeIntMarket ?? 0.0 == 0.0){
+                    cellA.percentChangeLabel.text = "\(stockArrayforIndex[indexPath.item].stockPercentChange)%"
+                    cellA.percentChangeLabel.textColor = UIColor.init(red:0.6, green:0.6, blue:0.6, alpha:1.0)
                 }
                 else{
                     cellA.percentChangeLabel.text = "\(stockArrayforIndex[indexPath.item].stockPercentChange)%"
