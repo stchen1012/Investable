@@ -36,6 +36,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     var selectedTicker = ""
     var tickerList:[String] = []
     var indices:[String] = ["DIA", "ONEQ", "SPY"]
+    var stockArrayforIndexNonSorted: [Stock] = []
     var stockArrayforIndex: [Stock] = []
     var indexLastPriceArray:[Double] = []
     var indexPriceChangeArray:[String] = []
@@ -107,6 +108,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     let roundedPercentChangeCalc = String(format: "%.2f", percentChangeCalc)
                     indexStocks.stockPercentChange = String(format: "%.2f", percentChangeCalc)
                     self.stockArrayforIndex.append(indexStocks)
+                    self.stockArrayforIndex.sort(by: {$0.stockTicker < $1.stockTicker})
                     let lastUpdatedIEXTime = indexObjectInfo?.latestIEXUpdateTime
                     let epocTime = (lastUpdatedIEXTime ?? 0) / 1000
                     //You need to convert it from milliseconds dividing it by 1000
