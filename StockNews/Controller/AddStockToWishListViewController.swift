@@ -43,6 +43,14 @@ class AddStockToWishListViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    
+// function below to capturn return key from user press and trigger action to add stock to wishlist
+    @IBAction func primaryActionTriggered(_ sender: Any) {
+        addStockToWishListDelegate?.updateTickerList(sender: addStockTextfield.text ?? "")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
 
 protocol AddStockToWishListDelegate: AnyObject {
